@@ -13,8 +13,8 @@ export default async function handler(req, res) {
 
         const response = await fetch('https://api.jsonbin.io/v3/b/664f9679ad19ca34f86e10bc', {
             headers: {
-                'X-ACCESS-KEY': process.env.ACCESS_KEY, // Using environment variable
-                'X-MASTER-KEY': process.env.MASTER_KEY, // Using environment variable
+                'X-ACCESS-KEY': process.env.X_ACCESS_KEY, // Using environment variable
+                'X-MASTER-KEY': process.env.X_MASTER_KEY, // Using environment variable
             },
         });
 

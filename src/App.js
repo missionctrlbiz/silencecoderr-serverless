@@ -4,42 +4,42 @@ import Home from './pages/Home';
 import Dark from './pages/Dark';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { AppProvider } from './context/AppContext';
 
 function App() {
 
   const themeMode = useSelector((state) => state.image.themeMode);
+  
   useEffect(() => {
-
     var head = document.head;
     var link; 
 
     if (themeMode === "dark") {
-        
       link = document.createElement("link");
+      link.id = "darkcss";
+      link.type = "text/css";
+      link.rel = "stylesheet";
+      link.href = `assets/css/dark.css`;
+      head.appendChild(link);
 
-        link.id = "darkcss";
-        link.type = "text/css";
-        link.rel = "stylesheet";
-        link.href = `assets/css/dark.css`;
-
-        head.appendChild(link);
-        return () => { head.removeChild(link); }
+      return () => {
+        head.removeChild(link);
+      };
     } else {
       link = document.getElementById("darkcss");
-        
-        if (link != null) head.removeChild(link);
+      if (link != null) head.removeChild(link);
     }
-}, [themeMode]);
+  }, [themeMode]);
 
   return (
-    <>
+    <AppProvider>
       <div>
-      <Routes>
-        <Route path='/' element={ <Home /> } />
-        <Route path='/dark' element={ <Dark /> } />
-      </Routes>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/dark' element={<Dark />} />
+        </Routes>
       </div>
-    </>
+    </AppProvider>
   );
 }
 
