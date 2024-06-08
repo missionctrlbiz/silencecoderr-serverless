@@ -24,3 +24,4 @@ yarn-error.log*
 
 *.psd
 *.zip
+.vercel

@@ -1,5 +1,4 @@
 // api/fetch-data.js
-// api/fetch-data.js
 
 const cache = {};
 const CACHE_DURATION_MS = 5 * 60 * 1000; // Cache for 5 minutes
@@ -13,8 +12,8 @@ export default async function handler(req, res) {
 
         const response = await fetch('https://api.jsonbin.io/v3/b/664f9679ad19ca34f86e10bc', {
             headers: {
-                'X-ACCESS-KEY': '$2a$10$4EN2GPJn4AOiq2uNpGS35.i/DlvTFph1fgQReUBLcH2mpmm0J5ft.',
-                'X-MASTER-KEY': '$2a$10$hGEua.fk2zjUH4ho80nmcuTDtW5dGXptKgrifYfbS9SwjJTfxoJ6K', 
+                'X-ACCESS-KEY': process.env.ACCESS_KEY, // Using environment variable
+                'X-MASTER-KEY': process.env.MASTER_KEY, // Using environment variable
             },
         });
 
