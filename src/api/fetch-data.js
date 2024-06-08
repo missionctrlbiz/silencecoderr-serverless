@@ -1,4 +1,5 @@
 // api/fetch-data.js
+require('dotenv').config();
 
 const cache = {};
 const CACHE_DURATION_MS = 5 * 60 * 1000; // Cache for 5 minutes
