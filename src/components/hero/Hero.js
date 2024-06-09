@@ -10,8 +10,9 @@ function Hero() {
     const shape4Ref = useRef(null);
     const shape5Ref = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
-    const { state } = useAppContext();
 
+    
+    const { state } = useAppContext();
     const heroData = state.heroData;
 
     const handleSubmit = (e) => {

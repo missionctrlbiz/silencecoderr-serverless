@@ -1,6 +1,5 @@
-// AppContext.js
+// src/AppContext.js
 import React, { createContext, useReducer, useEffect } from 'react';
-import axios from 'axios';
 import { TailSpin } from 'react-loader-spinner';
 
 const initialState = {
@@ -33,16 +32,17 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('https://silencecoderr-serverless.vercel.app/api/fetch-data');
+                const response = await fetch('/api/fetch-data');
+                const data = await response.json();
                 dispatch({
                     type: 'FETCH_SUCCESS',
                     payload: {
-                        reviews: response.data.record.reviews,
-                        portfolio: response.data.record.recent_works,
-                        heroData: response.data.record,
-                        services: response.data.record.services,
-                        education: response.data.record.education,
-                        experience: response.data.record.experience,
+                        reviews: data.record.reviews,
+                        portfolio: data.record.recent_works,
+                        heroData: data.record,
+                        services: data.record.services,
+                        education: data.record.education,
+                        experience: data.record.experience,
                     },
                 });
             } catch (error) {
@@ -56,19 +56,10 @@ export const AppProvider = ({ children }) => {
     if (state.loading) {
         return (
             <div className="spinner-container">
-                <TailSpin
-                    height="80"
-                    width="80"
-                    color="#4fa94d"
-                    ariaLabel="loading"
-                />
+                <TailSpin height="80" width="80" color="#4fa94d" ariaLabel="loading" />
             </div>
         );
     }
 
-    return (
-        <AppContext.Provider value={{ state, dispatch }}>
-            {children}
-        </AppContext.Provider>
-    );
+    return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 };
