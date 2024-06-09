@@ -3,9 +3,10 @@ import { headermanu } from '../utility/headermanu';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
+import { Link as ScrollLink } from 'react-scroll';
 
 function Header() {
-    const [isScrolled, setIsScrolled] = useState(true);
+    const [isScrolled, setIsScrolled] = useState(false);
     const [activeMenuItem, setActiveMenuItem] = useState('#home');
     const [loaded, setLoaded] = useState(true);
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
@@ -13,23 +14,15 @@ function Header() {
 
     const handleClick = (e, href) => {
         e.preventDefault();
-        setActiveMenuItem(href)
-        setIsNavbarOpen();
+        setActiveMenuItem(href);
+        setIsNavbarOpen(false);
 
         const targetElement = document.querySelector(href);
         if (targetElement) {
             targetElement.scrollIntoView({ behavior: 'smooth' });
         }
-
-        const topMenu = document.querySelector(".navbar-nav");
-        const topMenuHeight = topMenu ? topMenu.offsetHeight : 0;
-        const target = document.querySelector(href);
-        const offsetTop = target ? target.offsetTop - topMenuHeight + 1 : 0;
-        window.scrollTo({
-            top: offsetTop,
-            behavior: "smooth"
-        });
     }
+
     useEffect(() => {
         const handleScroll = () => {
             const topMenu = document.querySelector(".navbar-nav");
@@ -37,7 +30,7 @@ function Header() {
             const fromTop = window.scrollY + topMenuHeight;
 
             const scrollItems = headermanu.map(data => document.querySelector(data.href));
-            const cur = scrollItems.filter(item => item.offsetTop < fromTop).pop();
+            const cur = scrollItems.filter(item => item && item.offsetTop < fromTop).pop();
             const id = cur ? cur.id : "";
 
             setActiveMenuItem(`#${id}`);
@@ -49,12 +42,6 @@ function Header() {
             } else {
                 setIsScrolled(false);
             }
-
-            window.addEventListener('scroll', handleScroll);
-
-            return () => {
-                window.removeEventListener('scroll', handleScroll);
-            };
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -80,9 +67,8 @@ function Header() {
         };
     }, []);
 
-
     const handlesubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
     }
 
     return (
@@ -92,7 +78,7 @@ function Header() {
                     <span className="loader"> </span>
                 </div>
             )}
-            <header  className={`bx-static ${isScrolled ? (themeMode === "dark" ? 'bx-fixed bg' : 'bx-fixed') : ''}`}>
+            <header className={`bx-static ${isScrolled ? (themeMode === "dark" ? 'bx-fixed bg' : 'bx-fixed') : ''}`}>
                 <div className="container">
                     <div className="nav-sec padding-b-50">
                         <nav className="navbar navbar-expand-lg navbar-dark">
@@ -116,34 +102,36 @@ function Header() {
                                     aria-expanded="false"
                                     aria-label="Toggle navigation">
                                     <FontAwesomeIcon icon={faList} />
-
                                 </button>
                                 <div className={`collapse navbar-collapse ${isNavbarOpen ? 'show' : ''}`}
                                     id="navbarSupportedContent">
                                     <ul className="navbar-nav" id="top-menu">
-                                        {
-                                            headermanu.map((data, index) => (
-                                                <li key={index}
-                                                    className={`nav-item ${activeMenuItem === data.href ? "active" : ""}`}>
-                                                    <a onClick={(e) => handleClick(e, data.href)}
-                                                        className="nav-link br-nav"
-                                                        aria-current="page"
-                                                        href={data.href}>{data.title}</a>
-                                                </li>
-                                            ))
-                                        }
+                                        {headermanu.map((data, index) => (
+                                            <li key={index}
+                                                className={`nav-item ${activeMenuItem === data.href ? "active" : ""}`}>
+                                                <a onClick={(e) => handleClick(e, data.href)}
+                                                    className="nav-link br-nav"
+                                                    aria-current="page"
+                                                    href={data.href}>{data.title}</a>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
-                                <a onClick={(e) => handlesubmit(e)}
+                                <ScrollLink
+                                    to="contact"
+                                    smooth={true}
+                                    duration={500}
                                     className="custom-btn bx-btn m-r-5px"
-                                    href="/">Get a quote</a>
+                                >
+                                    Get In Touch
+                                </ScrollLink>
                             </div>
                         </nav>
                     </div>
                 </div>
             </header>
         </>
-    )
+    );
 }
 
-export default Header
+export default Header;
