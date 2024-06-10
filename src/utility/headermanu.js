@@ -23,8 +23,13 @@ export const headermanu = [
     },
 
     {
-        href: "#news",
-        title: "News"
+        href: "#brands",
+        title: "Brands"
+    },
+    
+    {
+        href: "#reviews",
+        title: "Reviews"
     },
 
     {

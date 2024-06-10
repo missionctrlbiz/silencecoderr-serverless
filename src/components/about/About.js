@@ -1,6 +1,34 @@
-import { Fade } from 'react-awesome-reveal'
+import React from 'react';
+import { Fade } from 'react-awesome-reveal';
+import { Link } from 'react-router-dom';
+import { useAppContext } from '../../context/useAppContext';
+import ContentLoader from 'react-content-loader'; // If you're using skeleton loaders
+
 
 function About() {
+    const { state } = useAppContext();
+    const { aboutData, loading } = state; // Get aboutData and loading from context
+    // Skeleton Loader Component
+    const AboutSkeleton = () => (
+        <ContentLoader
+            speed={2}
+            width={400}
+            height={300}
+            viewBox="0 0 400 300"
+            backgroundColor="#f3f3f3"
+            foregroundColor="#ecebeb"
+        >
+            <rect x="20" y="20" rx="5" ry="5" width="350" height="20" />
+            <rect x="20" y="50" rx="3" ry="3" width="300" height="10" />
+            <rect x="20" y="70" rx="3" ry="3" width="100" height="10" />
+            <rect x="20" y="90" rx="3" ry="3" width="100" height="10" />
+            <rect x="140" y="90" rx="3" ry="3" width="100" height="10" />
+            <rect x="20" y="120" rx="3" ry="3" width="100" height="10" />
+            <rect x="140" y="120" rx="3" ry="3" width="200" height="10" />
+            <rect x="20" y="150" rx="3" ry="3" width="350" height="10" />
+            {/* Add more shapes to match your About section's structure */}
+        </ContentLoader>
+    );
     return (
         <div>
             <section id="about" className={`bx-about-section bx-section padding-b-80 ${"#about" ? "padding-top" : ""}`}>
@@ -13,53 +41,59 @@ function About() {
                         </div>
                         <Fade triggerOnce duration={2000} direction='up' delay={300} className="col-md-12 col-lg-6">
                             <div className="detailed-content">
-                                <div className="title">
-                                    <p className="light-txt">About us</p>
-                                    <h2>Creativity bleeds from the
-                                        pen of<span className="primary-clr"> inspiration</span></h2>
-                                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat molestiae veniam autem
-                                        alias in provident est.</p>
-                                </div>
-                                <div className="personal-detail">
-                                    <div className="content">
-                                        <div className="left">
-                                            <div className="name pb">
-                                                <span className="info">Full Name :</span>
-                                                <span className="detail">Richard Lord </span>
-                                            </div>
-                                            <div className="age pb">
-                                                <span className="info">Age :</span>
-                                                <span className="detail">30 Years</span>
-                                            </div>
+                                {loading ? (
+                                    <AboutSkeleton /> // Render skeleton while loading
+                                ) : (
+                                    <>
+                                        <div className="title">
+                                            <p className="light-txt">About me</p>
+                                            <h2>{aboutData.sub}</h2>
+                                            <p>{aboutData.short_info}</p>
                                         </div>
-                                        <div className="right">
-                                            <div className="ph pb">
-                                                <span className="info">Phone No :</span>
-                                                <span className="detail">+00 987654321</span>
-                                            </div>
+                                        <div className="personal-detail">
+                                            <div className="content">
+                                                <div className="left">
+                                                    <div className="name pb">
+                                                        <span className="info">Full Name:</span>
+                                                        <span className="detail"> {aboutData.name}</span>
+                                                    </div>
+                                                    <div className="address pb">
+                                                        <div className="address">
+                                                            <span className="info">Address:</span><br />
+                                                            <span className="detail"> {aboutData.contact.address}</span> {/* Access contact data */}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="right">
+                                                    <div className="ph pb">
+                                                        <span className="info">Phone No:</span>
+                                                        <span className="detail">
+                                                            <Link to={`tel:${aboutData.contact.phone}`}>
+                                                                {aboutData.contact.phone}
+                                                            </Link>
+                                                        </span>
+                                                    </div>
 
-                                            <div className="email pb">
-                                                <span className="info">Email :</span>
-                                                <span className="detail">example@example.com</span>
+                                                    <div className="email pb">
+                                                        <span className="info">Email:</span>
+                                                        <span className="detail">
+                                                            <Link to={`mailto:${aboutData.contact.email}`}>
+                                                                {aboutData.contact.email}
+                                                            </Link>
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="mail">
-                                        <div className="mail">
-                                            <div className="address">
-                                                <span className="info">Address :</span>
-                                                <span className="detail">Ruami mellow moraes,- Salvador, Brazil</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </>
+                                )}
                             </div>
                         </Fade>
                     </div>
                 </div>
             </section>
         </div>
-    )
+    );
 }
 
-export default About
+export default About;

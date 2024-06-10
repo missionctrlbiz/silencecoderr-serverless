@@ -1,82 +1,103 @@
-import { useState } from 'react';
+import React from 'react';
+import Slider from 'react-slick';
 import { Fade } from 'react-awesome-reveal';
-import { portfolio } from '../../utility/portfolio';
-import PortfolioItem from './PortfolioItem';
-import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import './Portfolio.css';
+import { useAppContext } from '../../context/useAppContext';
+import ContentLoader from 'react-content-loader'; 
 
-function Portfolio() {
-    const [category, setCategory] = useState('all')
-    const [activeTab, setActiveTab] = useState(0);
+const Portfolio = () => {
+  const { state } = useAppContext(); // Access context
+  const appScreens = state.portfolio; // Get portfolio data from context
 
-    const categories = [
-        "all",
-        'design',
-        'development',
-        'graphics',
-        'templates'
-    ];
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3, // Show 3 items at a time
+    slidesToScroll: 1, // Scroll 1 item at a time
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    adaptiveHeight: true,
+    responsive: [
+        {
+            breakpoint: 1024, // Screen width of 1024px or less
+            settings: {
+                slidesToShow: 2, // Show 2 items at a time
+                slidesToScroll: 1, // Scroll 1 item at a time
+            },
+        },
+        {
+            breakpoint: 600, // Screen width of 600px or less
+            settings: {
+                slidesToShow: 1, // Show 1 item at a time
+                slidesToScroll: 1, // Scroll 1 item at a time
+            },
+        },
+    ],
+};
 
-    const filterProducts = () => {
-        if (category !== 'all') {
-            return portfolio.filter((portfolio) => portfolio.categories.indexOf(category) !== -1);
-        }
-        return portfolio;
-    }
+  // Skeleton Loader for Portfolio Items
+  const PortfolioSkeleton = () => (
+    <ContentLoader 
+      speed={2}
+      width={300} // Adjust width as needed
+      height={200} // Adjust height as needed
+      viewBox="0 0 300 200"
+      backgroundColor="#f3f3f3"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="0" rx="5" ry="5" width="300" height="150" />
+      <rect x="10" y="165" rx="3" ry="3" width="150" height="10" />
+      <rect x="10" y="180" rx="3" ry="3" width="200" height="10" />
+    </ContentLoader>
+  );
 
-    const handleCategory = (_category) => {
-        setCategory(_category);
-
-    }
-
-    return (
-        <>
-            <section id="portfolio" className="bx-portfolio-section bx-section portfolio padding-tb-80">
-                <div className="container">
-                    <Fade triggerOnce duration={2000} direction='up' delay={300} className="title" >
-                        <p className="ligh-title">Portfolio</p>
-                        <h2>My <span className="primary-clr">Portfolio</span></h2>
-                    </Fade>
-                    <div className="row m-b-minus-24px">
-                        <div className="portfolio-content">
-                            <div>
-                                <div className="row">
-                                    <Tabs selectedIndex={activeTab} onSelect={(index) => setActiveTab(index)}>
-                                        <Fade triggerOnce duration={2000} direction='up' delay={400} className="col-sm-12">
-                                            <div className="portfolio-tabs">
-                                                <TabList>
-                                                    {categories.map((_category, index) => (
-                                                        <Tab onClick={() => handleCategory(_category)} key={index} className={category === _category ? 'filter mixitup-control-active' : ''} data-filter={_category}>{_category}</Tab>
-                                                    ))}
-                                                </TabList>
-                                            </div>
-                                        </Fade>
-
-                                        <Fade triggerOnce duration={2000} direction='in' className="col-md-12 col-sm-12">
-                                            {categories.map((_category, index) => (
-                                                <TabPanel key={index} >
-                                                    <div className="col-md-12 col-sm-12">
-                                                        <div className="portfolio-content-items">
-                                                            <div className="row m-b-minus-30px mix">
-                                                                {filterProducts().map((data, i) => (
-                                                                    <PortfolioItem key={i} data={data} selectedCategory={category} />
-                                                                ))}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </TabPanel>
-                                            ))}
-                                        </Fade>
-                                    </Tabs>
-                                </div>
-                            </div>
-                        </div>
+  return (
+    <section name="portfolio" id="portfolio" className="bx-contact-section bx-section padding-tb-80 body-bg">
+      <div className="portfolio-section" style={{ marginTop: `50px` }}>
+        <Fade triggerOnce duration={2000} direction="up" delay={300}>
+          <div className="title">
+            <p className="light-txt">My Portfolio</p>
+            <h2>
+              Recent <span className="primary-clr">Works</span>
+            </h2>
+          </div>
+        </Fade>
+        <div className="container">
+          <div className="row">
+            <Fade triggerOnce duration={2000} direction="up" delay={300}>
+              {state.loading ? ( // Check loading state from context
+                // Render skeleton loaders
+                <Slider {...settings}>
+                  {Array.from({ length: 3 }).map((_, index) => ( // Adjust the length as needed
+                    <div key={index} className="portfolio-item">
+                      <PortfolioSkeleton />
                     </div>
-                    <div>
-                    </div>
-                </div>
-            </section>
-        </>
-    )
-}
+                  ))}
+                </Slider>
+              ) : (
+                // Render actual portfolio items
+                appScreens && appScreens.length > 0 ? (
+                  <Slider {...settings}>
+                    {appScreens.map((item, index) => (
+                      <div key={index} className="portfolio-item">
+                        <img src={item.image} alt={item.name} className="portfolio-image" />
+                        <p className="portfolio-name">{item.name}</p>
+                        <p className="portfolio-desc">{item.short_desc}</p>
+                      </div>
+                    ))}
+                  </Slider>
+                ) : (
+                  <div>No recent works available</div>
+                )
+              )}
+            </Fade>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-export default Portfolio
+export default Portfolio;

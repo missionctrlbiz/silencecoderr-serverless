@@ -5,7 +5,8 @@ import Service from '../components/service/Service';
 import About from '../components/about/About';
 import Experience from '../components/experience/Experience';
 import Portfolio from '../components/portfolio/Portfolio';
-import News from '../components/news/News';
+import BrandSlider from '../components/brands/BrandSlider'
+import Reviews from '../components/reviews/Reviews'
 import Contact from '../components/contact/Contact';
 import Footer from '../layout/Footer';
 import { useDispatch } from 'react-redux';
@@ -22,13 +23,15 @@ function Dark() {
   return (
     <div>
 
+      
       <Header />
       <Hero />
-      <Service />
       <About />
-      <Experience />
+      <Service />
       <Portfolio />
-      <News />
+      <Experience />
+      <BrandSlider />
+      <Reviews />
       <Contact />
       <Footer />
 
