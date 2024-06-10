@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Fade } from "react-awesome-reveal";
 import BgSlider from '../backgroundslider/BgSlider';
 import { useAppContext } from '../../context/useAppContext'
+import ContentLoader from 'react-content-loader'
 
 function Hero() {
     const shape1Ref = useRef(null);
@@ -11,7 +12,7 @@ function Hero() {
     const shape5Ref = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
 
-    
+
     const { state } = useAppContext();
     const heroData = state.heroData;
 
@@ -19,7 +20,36 @@ function Hero() {
         e.preventDefault();
         setIsOpen(!isOpen);
     }
-
+    // Skeleton Loader for Hero content
+    const HeroSkeleton = () => (
+        <ContentLoader
+            speed={2}
+            width={400}
+            height={200}
+            viewBox="0 0 400 200"
+            backgroundColor="#f3f3f3"
+            foregroundColor="#ecebeb"
+        >
+            <rect x="0" y="0" rx="3" ry="3" width="350" height="20" />
+            <rect x="0" y="30" rx="3" ry="3" width="300" height="20" />
+            <rect x="0" y="60" rx="3" ry="3" width="200" height="10" />
+            <rect x="0" y="80" rx="3" ry="3" width="150" height="10" />
+            {/* Add more shapes to match the structure of your Hero content */}
+        </ContentLoader>
+    );
+    // Skeleton Loader for Profile Image
+  const ProfileImageSkeleton = () => (
+    <ContentLoader 
+      speed={2}
+      width={500} // Adjust width as needed
+      height={500} // Adjust height as needed
+      viewBox="0 0 150 150"
+      backgroundColor= "#c0c0c0"
+      foregroundColor="#ecebeb"
+    >
+      <rect x="0" y="0" width="150" height="150" />
+    </ContentLoader>
+  );
     return (
         <div>
             <section id="home" className="bx-home home-section bx-section padding-tb-80 bg-shape-hero">
@@ -38,27 +68,39 @@ function Hero() {
                 <img ref={shape5Ref} id="shape5" className="parallax" src="assets/img/bg/shape-5.png" alt="shape" />
 
                 <div className="container p-0">
-                    <div className="row">
-                        <div style={{ margin: "auto" }} className="col-md-6">
-                            <Fade triggerOnce duration={2000} direction='up' className="basic-details">
-                                <div className="info">
-                                    <span className="primary-color">Hello, My name is</span>
-                                    <h1>{heroData.name}</h1>
-                                    <h2>{heroData.sub}</h2>
-                                    <p>{heroData.short_info}</p>
-                                    <div className="buttons">
-                                        <a onClick={handleSubmit} className="custom-btn bx-btn" href="/">Hire Me</a>
-                                    </div>
-                                </div>
-                            </Fade>
-                        </div>
-                        <div className="col-md-6">
-                            <div className="profile-img">
-                                <div className="profile-detail">
-                                    <img src={heroData.profile_pic} alt="" />
-                                </div>
-                            </div>
-                        </div>
+          <div className="row">
+            <div style={{ margin: "auto" }} className="col-md-6">
+              <Fade triggerOnce duration={2000} direction="up" className="basic-details">
+                <div className="info">
+                  {state.loading ? ( // Conditional rendering based on loading state
+                    <HeroSkeleton /> 
+                  ) : (
+                    <>
+                      <span className="primary-color">Hello, My name is</span>
+                      <h1>{heroData.name}</h1>
+                      <h2>{heroData.sub}</h2>
+                      <p>{heroData.short_info}</p>
+                      <div className="buttons">
+                        <a onClick={handleSubmit} className="custom-btn bx-btn" href="/">
+                          Hire Me
+                        </a>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </Fade>
+            </div>
+            <div className="col-md-6">
+            <div className="profile-img">
+              <div className="profile-detail">
+                {state.loading ? ( 
+                  <ProfileImageSkeleton /> 
+                ) : (
+                  <img src={heroData.profile_pic} alt="" />
+                )}
+              </div>
+            </div>
+          </div> 
                     </div>
                 </div>
             </section>

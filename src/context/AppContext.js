@@ -1,6 +1,5 @@
 // src/AppContext.js
 import React, { createContext, useReducer, useEffect } from 'react';
-import { TailSpin } from 'react-loader-spinner';
 
 const initialState = {
     reviews: [],
@@ -52,14 +51,6 @@ export const AppProvider = ({ children }) => {
 
         fetchData();
     }, []);
-
-    if (state.loading) {
-        return (
-            <div className="spinner-container">
-                <TailSpin height="80" width="80" color="#4fa94d" ariaLabel="loading" />
-            </div>
-        );
-    }
 
     return <AppContext.Provider value={{ state, dispatch }}>{children}</AppContext.Provider>;
 };
