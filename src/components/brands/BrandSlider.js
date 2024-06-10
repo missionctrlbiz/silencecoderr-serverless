@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import { Fade } from 'react-awesome-reveal';
-
 import './BrandSlider.css';
+import { useAppContext } from '../../context/useAppContext';
+import ContentLoader from 'react-content-loader';
 
 function BrandSlider() {
-    const [brands, setBrands] = useState([]);
-
-    useEffect(() => {
-        const fetchBrands = async () => {
-            try {
-                const response = await fetch('http://localhost:5000/api'); // Adjust URL accordingly
-                const data = await response.json();
-                setBrands(data.record.brands);
-            } catch (error) {
-                console.error('Error fetching brands:', error);
-            }
-        };
-
-        fetchBrands();
-    }, []);
+    const { state } = useAppContext(); // Access the context
+    const brands = state.brands; // Get brands from context (adjust path if needed)
 
     const settings = {
         dots: false,
@@ -51,26 +39,56 @@ function BrandSlider() {
         ]
     };
 
+    // Skeleton Loader for Brand items
+    const BrandSkeleton = () => (
+        <ContentLoader
+            speed={2}
+            width={150} // Adjust width as needed
+            height={100} // Adjust height as needed
+            viewBox="0 0 150 100"
+            backgroundColor="#f3f3f3"
+            foregroundColor="#ecebeb"
+        >
+            <rect x="0" y="0" rx="5" ry="5" width="150" height="100" />
+        </ContentLoader>
+    );
+
     return (
         <div>
-            <section id="brands" className="bx-service-section bx-section primary-clr" style={{ marginTop: `80px`, marginBottom: `20px` }}>
+            <section
+                id="brands"
+                className="bx-service-section bx-section primary-clr"
+                style={{ marginTop: `80px`, marginBottom: `20px` }}
+            >
                 <div className="container">
                     <div className="row">
-                        <Fade triggerOnce duration={2000} direction='up' delay={300} >
+                        <Fade triggerOnce duration={2000} direction="up" delay={300}>
                             <div className="title">
                                 <p className="light-txt">Discover Brands</p>
-                                <h2>Crafting Innovative <span className="primary-clr">Solutions for Our Partners</span></h2>
+                                <h2>
+                                    Crafting Innovative <span className="primary-clr">Solutions for Our Partners</span>
+                                </h2>
                             </div>
                         </Fade>
-                        <Slider {...settings}>
-                            {brands.map((brand, index) => (
-                                <div key={index} className="brand-slide">
-                                    <a href={brand.redirect} target="_blank" rel="noopener noreferrer">
-                                        <img src={brand.pic} alt={`brand-${index}`} />
-                                    </a>
-                                </div>
-                            ))}
-                        </Slider>
+                        {state.loading ? ( // Check loading state from context
+                            <Slider {...settings}>
+                                {Array.from({ length: 4 }).map((_, index) => ( // Adjust length as needed
+                                    <div key={index} className="brand-slide">
+                                        <BrandSkeleton />
+                                    </div>
+                                ))}
+                            </Slider>
+                        ) : (
+                            <Slider {...settings}>
+                                {brands.map((brand, index) => (
+                                    <div key={index} className="brand-slide">
+                                        <a href={brand.redirect} target="_blank" rel="noopener noreferrer">
+                                            <img src={brand.pic} alt={`brand-${index}`} />
+                                        </a>
+                                    </div>
+                                ))}
+                            </Slider>
+                        )}
                     </div>
                 </div>
             </section>

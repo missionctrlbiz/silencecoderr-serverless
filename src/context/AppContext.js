@@ -43,6 +43,8 @@ export const AppProvider = ({ children }) => {
                         services: data.record.services,
                         education: data.record.education,
                         experience: data.record.experience,
+                        brands: data.record.brands,
+                        skills: data.record.skills,
                     },
                 });
             } catch (error) {

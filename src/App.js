@@ -5,6 +5,8 @@ import Dark from './pages/Dark';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { AppProvider } from './context/AppContext';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
 

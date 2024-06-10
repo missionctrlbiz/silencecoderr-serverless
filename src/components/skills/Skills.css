@@ -1,0 +1,32 @@
+/* Skills.css */
+.skills-row {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around; /* Distribute items evenly */
+    width: 100%;
+    margin-bottom: 20px; /* Add spacing between rows */
+  }
+  
+  .skill-item {
+    text-align: center; /* Center text */
+  }
+  
+  .skill-item img {
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  
+.title {
+    margin-bottom: 20px;
+}
+
+.title h2 {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.title h2 .primary-clr {
+    color: #7963e0;
+    text-transform: uppercase;
+}

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { useAppContext } from '../context/useAppContext'; 
-import ContentLoader from 'react-content-loader';
+import { useAppContext } from '../context/useAppContext';
 
 function Footer() {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -34,19 +33,6 @@ function Footer() {
     });
   };
 
-  // Skeleton Loader for Footer Name
-  const FooterNameSkeleton = () => (
-    <ContentLoader 
-      speed={2}
-      width={150}
-      height={20}
-      viewBox="0 0 150 20"
-      backgroundColor="#f3f3f3"
-      foregroundColor="#ecebeb"
-    >
-      <rect x="0" y="0" rx="3" ry="3" width="150" height="20" />
-    </ContentLoader>
-  );
 
   return (
     <>
@@ -57,18 +43,12 @@ function Footer() {
         </div>
       )}
 
-<footer className="footer bg-clr" style={{ paddingBottom: '30px' }}>
+      <footer className="footer bg-clr" style={{ paddingBottom: '30px' }}>
         <div className="container d-flex justify-content-center align-items-center flex-column">
           <div className="bx-footer-detail text-center">
             <div className="bx-copy">
               Copyright © {currentYear}{' '}
-              <a onClick={handleSubmit} className="site-name" href="/">
-                {state.loading ? (
-                  <FooterNameSkeleton />
-                ) : (
-                  state.heroData.name // Assuming your name is in heroData
-                )} 
-              </a>{' '}
+              <a onClick={handleSubmit} className="site-name" href="/">{state.heroData.name}.</a>{' '}
               All rights reserved. <br />
               Powered by <Link to="https://instagram.com/missionctrl.biz">MissionCTRL Creative Labs</Link>
             </div>

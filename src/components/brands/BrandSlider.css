@@ -20,7 +20,7 @@
 }
 
 .title .primary-clr {
-    color: #007bff;
+    color: #770b4c;
 }
 
 .brand-slide {
@@ -45,7 +45,6 @@
 }
 
 .slick-slide {
-    height: 200px; /* Set a fixed height for the slider */
     display: flex;
     align-items: center; /* Center the images vertically */
     justify-content: center; /* Center the images horizontally */
