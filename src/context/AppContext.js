@@ -38,7 +38,6 @@ export const AppProvider = ({ children }) => {
                     payload: {
                         reviews: data.record.reviews,
                         portfolio: data.record.recent_works,
-                        heroData: data.record,
                         aboutData: data.record, 
                         services: data.record.services,
                         education: data.record.education,

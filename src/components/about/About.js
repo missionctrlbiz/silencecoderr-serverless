@@ -2,13 +2,12 @@ import React from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../../context/useAppContext';
-import ContentLoader from 'react-content-loader'; // If you're using skeleton loaders
-
+import ContentLoader from 'react-content-loader'; 
 
 function About() {
     const { state } = useAppContext();
-    const { aboutData, loading } = state; // Get aboutData and loading from context
-    // Skeleton Loader Component
+    const { aboutData, loading } = state; 
+    
     const AboutSkeleton = () => (
         <ContentLoader
             speed={2}
@@ -39,28 +38,30 @@ function About() {
                                 <img src="assets/img/about/img-1.jpg" alt="" />
                             </Fade>
                         </div>
+
                         <Fade triggerOnce duration={2000} direction='up' delay={300} className="col-md-12 col-lg-6">
                             <div className="detailed-content">
                                 {loading ? (
-                                    <AboutSkeleton /> // Render skeleton while loading
+                                    <AboutSkeleton />
                                 ) : (
                                     <>
-                                        <div className="title">
+                                        <div className="title" style={{ textAlign: 'left' }}>
                                             <p className="light-txt">About me</p>
-                                            <h2>{aboutData.sub}</h2>
-                                            <p>{aboutData.short_info}</p>
+                                            {/* Use optional chaining to access properties */}
+                                            <h2>{aboutData?.sub}</h2> 
+                                            <p>{aboutData?.short_info}</p>
                                         </div>
                                         <div className="personal-detail">
                                             <div className="content">
                                                 <div className="left">
                                                     <div className="name pb">
                                                         <span className="info">Full Name:</span>
-                                                        <span className="detail"> {aboutData.name}</span>
+                                                        <span className="detail">{aboutData?.name}</span>
                                                     </div>
                                                     <div className="address pb">
                                                         <div className="address">
                                                             <span className="info">Address:</span><br />
-                                                            <span className="detail"> {aboutData.contact.address}</span> {/* Access contact data */}
+                                                            <span className="detail">{aboutData?.contact?.address}</span> 
                                                         </div>
                                                     </div>
                                                 </div>
@@ -68,17 +69,16 @@ function About() {
                                                     <div className="ph pb">
                                                         <span className="info">Phone No:</span>
                                                         <span className="detail">
-                                                            <Link to={`tel:${aboutData.contact.phone}`}>
-                                                                {aboutData.contact.phone}
+                                                            <Link to={`tel:${aboutData?.contact?.phone}`}>
+                                                                {aboutData?.contact?.phone} 
                                                             </Link>
                                                         </span>
                                                     </div>
-
                                                     <div className="email pb">
                                                         <span className="info">Email:</span>
                                                         <span className="detail">
-                                                            <Link to={`mailto:${aboutData.contact.email}`}>
-                                                                {aboutData.contact.email}
+                                                            <Link to={`mailto:${aboutData?.contact?.email}`}>
+                                                                {aboutData?.contact?.email}
                                                             </Link>
                                                         </span>
                                                     </div>

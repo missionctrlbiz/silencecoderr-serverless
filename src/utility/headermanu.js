@@ -32,9 +32,4 @@ export const headermanu = [
         title: "Reviews"
     },
 
-    {
-        href: "#contact",
-        title: "Contact Us"
-    },
-
 ]

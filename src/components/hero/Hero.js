@@ -14,7 +14,7 @@ function Hero() {
 
 
     const { state } = useAppContext();
-    const heroData = state.heroData;
+    const aboutData = state.aboutData;
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -77,9 +77,9 @@ function Hero() {
                   ) : (
                     <>
                       <span className="primary-color">Hello, My name is</span>
-                      <h1>{heroData.name}</h1>
-                      <h2>{heroData.sub}</h2>
-                      <p>{heroData.short_info}</p>
+                      <h1>{aboutData.name}</h1>
+                      <h2>{aboutData.sub}</h2>
+                      <p>{aboutData.short_info}</p>
                       <div className="buttons">
                         <a onClick={handleSubmit} className="custom-btn bx-btn" href="/">
                           Hire Me
@@ -96,7 +96,7 @@ function Hero() {
                 {state.loading ? ( 
                   <ProfileImageSkeleton /> 
                 ) : (
-                  <img src={heroData.profile_pic} alt="" />
+                  <img src={aboutData.profile_pic} alt="" />
                 )}
               </div>
             </div>

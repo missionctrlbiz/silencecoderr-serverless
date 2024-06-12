@@ -30,10 +30,12 @@ function Skills() {
   );
 
   return (
-    <section id="skills" className="bx-skills-section bx-section padding-tb-80 body-bg">
+    <section
+      id="skills"
+      className="bx-skills-section bx-section padding-tb-80 body-bg"
+    >
       <div className="container">
         <div className="row">
-            
           <Fade triggerOnce duration={2000} direction="up" delay={300}>
             <div className="title">
               <p className="light-txt">My Expertise</p>
@@ -42,17 +44,33 @@ function Skills() {
               </h2>
             </div>
           </Fade>
-           {/* First Row (Slide Left) */}
-           <div className="skills-row">
+
+          {/* First Row (Slide Left) */}
+          <div className="skills-row">
             {state.loading ? (
-              Array.from({ length: 5 }).map((_, index) => ( 
-                <Fade key={index} triggerOnce duration={2000} direction="left" delay={300} className="skill-item">
+              Array.from({ length: 5 }).map((_, index) => (
+                <Fade
+                  key={index}
+                  triggerOnce
+                  duration={2000}
+                  direction="left"
+                  delay={300}
+                  className="skill-item"
+                >
                   <SkillSkeleton />
                 </Fade>
               ))
             ) : (
+              firstRowSkills && // <-- Check BEFORE .map()
               firstRowSkills.map((skill, index) => (
-                <Fade key={index} triggerOnce duration={2000} direction="left" delay={300} className="skill-item">
+                <Fade
+                  key={index}
+                  triggerOnce
+                  duration={2000}
+                  direction="left"
+                  delay={300}
+                  className="skill-item"
+                >
                   <img src={skill.image} alt={skill.name} />
                 </Fade>
               ))
@@ -63,19 +81,33 @@ function Skills() {
           <div className="skills-row">
             {state.loading ? (
               Array.from({ length: 5 }).map((_, index) => (
-                <Fade key={index} triggerOnce duration={2000} direction="right" delay={300} className="skill-item">
+                <Fade
+                  key={index}
+                  triggerOnce
+                  duration={2000}
+                  direction="right"
+                  delay={300}
+                  className="skill-item"
+                >
                   <SkillSkeleton />
                 </Fade>
               ))
             ) : (
+              secondRowSkills && // <-- Check BEFORE .map()
               secondRowSkills.map((skill, index) => (
-                <Fade key={index} triggerOnce duration={2000} direction="right" delay={300} className="skill-item">
+                <Fade
+                  key={index}
+                  triggerOnce
+                  duration={2000}
+                  direction="right"
+                  delay={300}
+                  className="skill-item"
+                >
                   <img src={skill.image} alt={skill.name} />
                 </Fade>
               ))
             )}
           </div>
-
         </div>
       </div>
     </section>

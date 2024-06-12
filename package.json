@@ -54,6 +54,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "https://silencecoderr-serverless.vercel.app/api/fetch-data" ,
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }

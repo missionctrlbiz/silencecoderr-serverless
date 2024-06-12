@@ -55,45 +55,51 @@ function BrandSlider() {
 
     return (
         <div>
-            <section
-                id="brands"
-                className="bx-service-section bx-section primary-clr"
-                style={{ marginTop: `80px`, marginBottom: `20px` }}
-            >
-                <div className="container">
-                    <div className="row">
-                        <Fade triggerOnce duration={2000} direction="up" delay={300}>
-                            <div className="title">
-                                <p className="light-txt">Discover Brands</p>
-                                <h2>
-                                    Crafting Innovative <span className="primary-clr">Solutions for Our Partners</span>
-                                </h2>
-                            </div>
-                        </Fade>
-                        {state.loading ? ( // Check loading state from context
-                            <Slider {...settings}>
-                                {Array.from({ length: 4 }).map((_, index) => ( // Adjust length as needed
-                                    <div key={index} className="brand-slide">
-                                        <BrandSkeleton />
-                                    </div>
-                                ))}
-                            </Slider>
-                        ) : (
-                            <Slider {...settings}>
-                                {brands.map((brand, index) => (
-                                    <div key={index} className="brand-slide">
-                                        <a href={brand.redirect} target="_blank" rel="noopener noreferrer">
-                                            <img src={brand.pic} alt={`brand-${index}`} />
-                                        </a>
-                                    </div>
-                                ))}
-                            </Slider>
-                        )}
-                    </div>
-                </div>
-            </section>
+          <section
+            id="brands"
+            className="bx-service-section bx-section primary-clr"
+            style={{ marginTop: `80px`, marginBottom: `20px` }}
+          >
+            <div className="container">
+              <div className="row">
+                <Fade triggerOnce duration={2000} direction="up" delay={300}>
+                  <div className="title">
+                    <p className="light-txt">Discover Brands</p>
+                    <h2>
+                      Crafting Innovative{' '}
+                      <span className="primary-clr">Solutions for Our Partners</span>
+                    </h2>
+                  </div>
+                </Fade>
+    
+                {/* Conditionally render based on loading state and data availability */}
+                {state.loading ? ( 
+                  <Slider {...settings}>
+                    {/* Render skeletons while loading */}
+                    {Array.from({ length: 4 }).map((_, index) => (
+                      <div key={index} className="brand-slide">
+                        <BrandSkeleton />
+                      </div>
+                    ))}
+                  </Slider>
+                ) : ( 
+                  brands && ( // Check if brands is defined before rendering the slider
+                    <Slider {...settings}>
+                      {brands.map((brand, index) => (
+                        <div key={index} className="brand-slide">
+                          <a href={brand.redirect} target="_blank" rel="noopener noreferrer">
+                            <img src={brand.pic} alt={`brand-${index}`} />
+                          </a>
+                        </div>
+                      ))}
+                    </Slider>
+                  )
+                )} 
+              </div>
+            </div>
+          </section>
         </div>
-    );
-}
-
-export default BrandSlider;
+      );
+    }
+    
+    export default BrandSlider;
