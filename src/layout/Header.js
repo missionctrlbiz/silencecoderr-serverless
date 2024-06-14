@@ -86,9 +86,9 @@ function Header() {
                                 <a onClick={(e) => handlesubmit(e)} href='/'
                                     className={`navbar-brand ${themeMode === "light" ? "" : ""}`}>
                                     {themeMode === "light" ? (
-                                        <img src="assets/img/logo/logo.png" alt="logo" />
+                                        <img src="assets/img/logo/silencecodder-logo.png" alt="logo" />
                                     ) : (
-                                        <img src="assets/img/logo/logo-dark.png" alt="logo" />
+                                        <img src="assets/img/logo/silencecodder-logo.png" alt="logo" />
                                     )}
                                 </a>
                                 <button

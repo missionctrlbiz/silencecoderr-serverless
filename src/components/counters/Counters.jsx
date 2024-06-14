@@ -45,7 +45,7 @@ function Counters() {
 
 
     return (
-        <section className="counters-section">
+        <section className="counters-section" style={{ marginTop: '90px', marginBottom: '0px'}}>
             <div className="container">
                 <div className="row">
                     {/* Experience Counter */}
@@ -76,9 +76,6 @@ function Counters() {
                     </div>
                    
                 </div>
-                <Fade triggerOnce duration={2000} direction="up" delay={300}>
-                            <div className="border-bottom top-50 padding-tb-20"></div>
-                        </Fade>
             </div>
         </section>
     );

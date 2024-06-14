@@ -13,7 +13,7 @@ const Portfolio = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 2, // Show 3 items at a time
+    slidesToShow: 3, // Show 3 items at a time
     slidesToScroll: 1, // Scroll 1 item at a time
     arrows: false,
     autoplay: true,
@@ -60,7 +60,7 @@ const Portfolio = () => {
           <div className="title">
             <p className="light-txt">My Portfolio</p>
             <h2>
-              Recent <span className="primary-clr">Works</span>
+              Recent <span className="primary-clr" style={{textTransform: 'unset'}}>Works</span>
             </h2>
           </div>
         </Fade>

@@ -82,7 +82,7 @@ function Contact() {
                 <div className="container">
                     <Fade triggerOnce duration={2000} direction='up' delay={300} className="title" >
                         <p className="light-txt">form</p>
-                        <h2>Get In<span className="primary-clr"> Touch</span></h2>
+                        <h2>Get In<span className="primary-clr" style={{textTransform: 'unset'}}> Touch</span></h2>
                     </Fade>
                     <form className={` ${themeMode === "light" ? "form-light" : ""}`} onSubmit={handleSubmit}>
                         <div className="row">

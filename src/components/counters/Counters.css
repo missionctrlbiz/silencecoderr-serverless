@@ -8,20 +8,20 @@
   }
   
   .counter-icon {
-    font-size: 3em; /* Make icons larger */
+    font-size: 2em; /* Make icons larger */
     color: #7963e0; 
     margin-bottom: 10px;
   }
   
   .counter-value {
-    font-size: 2.5em; /* Make the counter value larger */
+    font-size: 2em; /* Make the counter value larger */
     font-weight: bold;
     color: #7963e0;
     margin-bottom: 5px;
   }
   
   .counter-label {
-    font-size: 1.2em;
+    font-size: 1em;
     color: #7e7e7e;
     font-weight: bold;
   }

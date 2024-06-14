@@ -35,7 +35,7 @@ function Experience() {
               <div className="title">
                 <p className="light-txt">Unlocking Knowledge</p>
                 <h2>
-                  Exploring <span className="primary-clr">Academic & Work Experience</span>
+                  Exploring <span className="primary-clr" style={{textTransform: 'unset'}}>Academic & Work Experience</span>
                 </h2>
               </div>
             </Fade>
