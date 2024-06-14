@@ -13,7 +13,7 @@ const Portfolio = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 3, // Show 3 items at a time
+    slidesToShow: 2, // Show 3 items at a time
     slidesToScroll: 1, // Scroll 1 item at a time
     arrows: false,
     autoplay: true,
@@ -84,7 +84,7 @@ const Portfolio = () => {
                       <div key={index} className="portfolio-item">
                         <img src={item.image} alt={item.name} className="portfolio-image" />
                         <p className="portfolio-name">{item.name}</p>
-                        <p className="portfolio-desc">{item.short_desc}</p>
+                        {/* <p className="portfolio-desc">{item.short_desc}</p> */}
                       </div>
                     ))}
                   </Slider>
