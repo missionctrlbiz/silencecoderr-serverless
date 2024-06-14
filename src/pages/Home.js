@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Header from '../layout/Header';
 import Hero from '../components/hero/Hero';
 import Service from '../components/service/Service';
-import About from '../components/about/About';
+// import About from '../components/about/About';
 import Experience from '../components/experience/Experience';
 import Portfolio from '../components/portfolio/Portfolio';
 import BrandSlider from '../components/brands/BrandSlider'
@@ -29,10 +29,10 @@ function Home() {
       <Counters />
       <BrandSlider />
       <Service />
-      <About />
+      {/* <About /> */}
+      <Skills />
       <Experience />
       <Portfolio />
-      <Skills />
       <Reviews />
       <Contact />
       <Footer />
