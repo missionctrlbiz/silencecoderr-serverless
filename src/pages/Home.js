@@ -26,9 +26,9 @@ function Home() {
     <div>
       <Header />
       <Hero />
+      <Counters />
       <About />
       <Service />
-      <Counters />
       <Skills />
       <Experience />
       <Portfolio />
