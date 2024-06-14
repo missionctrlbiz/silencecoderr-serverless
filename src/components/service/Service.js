@@ -28,7 +28,7 @@ function Service() {
     return (
         <div>
             <section
-                id="service"
+                id="services"
                 className="bx-service-section bx-section body-bg"
                 style={{ marginTop: `80px`, marginBottom: `20px` }}
             >
@@ -70,9 +70,7 @@ function Service() {
                                 </Fade>
                             ))
                         )}
-                        <Fade triggerOnce duration={2000} direction="up" delay={300}>
-                            <div className="border-bottom padding-tb-20"></div>
-                        </Fade>
+                       
                     </div>
                 </div>
             </section>

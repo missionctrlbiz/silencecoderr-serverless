@@ -1,0 +1,26 @@
+
+/* Title Styles */
+.bx-about-section .title { /* More specific selector targeting the about section */
+    margin-bottom: 50px; 
+    text-align: center; /* Center the title */
+  }
+  
+  .bx-about-section .title h2 {
+    font-size: 2.2em;
+    margin: 10px 0;
+    font-weight: 700;
+    
+  }
+  .bx-about-section .light-txt {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #777;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  .bx-about-section .title h2 .primary-clr { /* More specific selector */
+    color: #7963e0;  
+    font-weight: bold; 
+    
+  } 

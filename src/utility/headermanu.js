@@ -9,6 +9,10 @@ export const headermanu = [
         href: "#about",
         title: "About"
     },
+    {
+        href: "#services",
+        title: "Services"
+    },
 
 
     {

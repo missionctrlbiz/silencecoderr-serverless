@@ -34,8 +34,9 @@ function Skills() {
       id="skills"
       className="bx-skills-section bx-section padding-tb-80 body-bg"
     >
+      
       <div className="container">
-        <div className="row">
+        <div className="row">          
           <Fade triggerOnce duration={2000} direction="up" delay={300}>
             <div className="title">
               <p className="light-txt">My Expertise</p>

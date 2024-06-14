@@ -12,6 +12,7 @@ import Footer from '../layout/Footer';
 import { useDispatch } from 'react-redux';
 import { setLight } from '../store/counter/ImageSlice';
 import Skills from '../components/skills/Skills';
+import Counters from '../components/counters/Counters';
 
 function Home() {
 
@@ -27,6 +28,7 @@ function Home() {
       <Hero />
       <About />
       <Service />
+      <Counters />
       <Skills />
       <Experience />
       <Portfolio />

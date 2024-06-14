@@ -17,6 +17,7 @@
     "react": "^18.3.1",
     "react-awesome-reveal": "^4.2.8",
     "react-content-loader": "^7.0.1",
+    "react-countup": "^6.5.3",
     "react-dom": "^18.3.1",
     "react-fancybox": "^0.2.5",
     "react-fontawesome": "^1.7.1",
@@ -54,7 +55,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://silencecoderr-serverless.vercel.app/api/fetch-data" ,
+  "proxy": "https://silencecoderr-serverless.vercel.app/api/fetch-data",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }

@@ -1,32 +1,45 @@
 /* Skills.css */
+
 .skills-row {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: space-around; /* Distribute items evenly */
-    width: 100%;
-    margin-bottom: 20px; /* Add spacing between rows */
-  }
-  
-  .skill-item {
-    text-align: center; /* Center text */
-  }
-  
-  .skill-item img {
-    height: 100px;
-    margin-bottom: 10px;
-  }
-
-  
-.title {
-    margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-.title h2 {
-    font-size: 24px;
-    margin: 10px 0;
+.skill-item {
+  text-align: center;
+  margin: 10px; /* Add some margin around skill items */
 }
 
-.title h2 .primary-clr {
-    color: #7963e0;
-    text-transform: uppercase;
+.skill-item img {
+  height: 100px;
+  margin-bottom: 10px;
 }
+
+/* Title Styles */
+.bx-skills-section .title { /* More specific selector targeting the Skills section */
+  margin-bottom: 50px; 
+  text-align: center; /* Center the title */
+}
+
+.bx-skills-section .title h2 {
+  font-size: 2.2em;
+  margin: 10px 0;
+  font-weight: 700;
+  
+}
+.bx-skills-section .light-txt {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #777;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.bx-skills-section .title h2 .primary-clr { /* More specific selector */
+  color: #7963e0;  
+  font-weight: bold; 
+  
+} 

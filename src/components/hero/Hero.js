@@ -10,16 +10,16 @@ function Hero() {
     const shape3Ref = useRef(null);
     const shape4Ref = useRef(null);
     const shape5Ref = useRef(null);
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen ] = useState(false);
 
 
     const { state } = useAppContext();
     const aboutData = state.aboutData;
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setIsOpen(!isOpen);
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     setIsOpen(!isOpen);
+    // }
     // Skeleton Loader for Hero content
     const HeroSkeleton = () => (
         <ContentLoader
@@ -80,11 +80,20 @@ function Hero() {
                       <h1>{aboutData.name}</h1>
                       <h2>{aboutData.sub}</h2>
                       <p>{aboutData.short_info}</p>
+
+                      
                       <div className="buttons">
-                        <a onClick={handleSubmit} className="custom-btn bx-btn" href="/">
-                          Hire Me
-                        </a>
-                      </div>
+                  {aboutData?.contact?.email && ( 
+                    <a 
+                      className="custom-btn bx-btn" // Add a class for styling
+                      href={`mailto:${aboutData?.contact?.email}`} 
+                      target="_blank"  // Open email link in a new tab
+                      rel="noopener noreferrer"
+                    >
+                      Email Me
+                    </a>
+                  )}
+                </div>
                     </>
                   )}
                 </div>

@@ -3,6 +3,7 @@ import { Fade } from 'react-awesome-reveal';
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../../context/useAppContext';
 import ContentLoader from 'react-content-loader'; 
+import './About.css'
 
 function About() {
     const { state } = useAppContext();
@@ -39,6 +40,8 @@ function About() {
                             </Fade>
                         </div>
 
+
+
                         <Fade triggerOnce duration={2000} direction='up' delay={300} className="col-md-12 col-lg-6">
                             <div className="detailed-content">
                                 {loading ? (
@@ -46,10 +49,10 @@ function About() {
                                 ) : (
                                     <>
                                         <div className="title" style={{ textAlign: 'left' }}>
-                                            <p className="light-txt">About me</p>
+                                            <p className="primary-clr light-txt">About me</p>
                                             {/* Use optional chaining to access properties */}
                                             <h2>{aboutData?.sub}</h2> 
-                                            <p>{aboutData?.short_info}</p>
+                                            <p className="primary-clr">{aboutData?.short_info}</p>
                                         </div>
                                         <div className="personal-detail">
                                             <div className="content">

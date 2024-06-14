@@ -54,7 +54,6 @@ function BrandSlider() {
     );
 
     return (
-        <div>
           <section
             id="brands"
             className="bx-service-section bx-section primary-clr"
@@ -98,7 +97,6 @@ function BrandSlider() {
               </div>
             </div>
           </section>
-        </div>
       );
     }
     

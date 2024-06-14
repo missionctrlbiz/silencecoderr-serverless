@@ -1,0 +1,37 @@
+.counters-section {
+    padding: 50px 0; /* Adjust padding as needed */
+    text-align: center; /* Center the content */
+  }
+  
+  .counter-item {
+    margin-bottom: 30px; /* Add spacing between counter items */
+  }
+  
+  .counter-icon {
+    font-size: 3em; /* Make icons larger */
+    color: #7963e0; 
+    margin-bottom: 10px;
+  }
+  
+  .counter-value {
+    font-size: 2.5em; /* Make the counter value larger */
+    font-weight: bold;
+    color: #7963e0;
+    margin-bottom: 5px;
+  }
+  
+  .counter-label {
+    font-size: 1.2em;
+    color: #7e7e7e;
+    font-weight: bold;
+  }
+
+  /* ... (other CSS styles remain the same) */
+
+.counter-value {
+    font-size: 2.5em; 
+    font-weight: bold;
+    color: #7963e0;
+    margin-bottom: 5px;
+    transition: all 0.3s ease; /* Add a transition for smoother animation */
+  }
