@@ -11,7 +11,7 @@ function Reviews() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-        }, 1000); // Change slide every 3 seconds
+        }, 4000); // Change slide every 3 seconds
         return () => clearInterval(interval);
     }, [reviews.length]);
 
