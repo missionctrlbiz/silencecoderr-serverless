@@ -28,11 +28,11 @@ function Home() {
       <Hero />
       <Counters />
       <BrandSlider />
-      <About />
       <Service />
-      <Skills />
+      <About />
       <Experience />
       <Portfolio />
+      <Skills />
       <Reviews />
       <Contact />
       <Footer />
