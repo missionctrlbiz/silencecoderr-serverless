@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Slider from 'react-slick';
 import './Reviews.css';
 import { useAppContext } from '../../context/useAppContext';
 import ContentLoader from 'react-content-loader';
@@ -6,14 +7,18 @@ import ContentLoader from 'react-content-loader';
 function Reviews() {
     const { state } = useAppContext();
     const reviews = state.reviews;
-    const [currentIndex, setCurrentIndex] = useState(0);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-        }, 4000); // Change slide every 3 seconds
-        return () => clearInterval(interval);
-    }, [reviews.length]);
+  
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1, // Show one review at a time
+      slidesToScroll: 1,
+      arrows: false, // Hide the default arrows
+      autoplay: true,
+      autoplaySpeed: 3000,
+    };
+  
 
     // Skeleton Loader for a single review item
     const ReviewSkeleton = () => (
@@ -36,58 +41,62 @@ function Reviews() {
 
     return (
         <section id="reviews" className="bx-service-section bx-section padding-tb-80">
-            <div className="container">
-                <div className="shape-1"></div>
-                <div className="shape-2"></div>
-
-                <div className="row mb-m-30">
-                    <div className="title">
-                        <p className="light-txt">Discover What Others Say</p>
-                        <h2>Exploring<span className="primary-clr"> Customer Reviews</span></h2>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-12">
-                        <div className="reviews-container">
-                            <div
-                                className="review-wrapper"
-                                style={{
-                                    transform: `translateX(${-currentIndex * 100}%)`,
-                                    transition: 'transform 0.5s ease-in-out',
-                                    marginBottom: `0px`,
-                                }}
-                            >
-                                {state.loading ? (
-                                    // Render skeletons while loading
-                                    Array.from({ length: 3 }).map((_, index) => (
-                                        <div key={index} className="review-item" style={{ marginBottom: `0px` }}>
-                                            <ReviewSkeleton />
-                                        </div>
-                                    ))
-                                ) : (
-                                    // Render actual reviews when data is loaded
-                                    reviews.map((review, index) => (
-                                        <div key={index} className="review-item" style={{ marginBottom: `0px` }}>
-                                            <div className="review-content" style={{ marginBottom: `0px` }}>
-                                                <blockquote>
-                                                    <p className="review-text">{review.review}</p>
-                                                </blockquote>
-                                                {review.picture && (
-                                                    <img src={review.picture} alt={review.name} className="review-picture" />
-                                                )}
-                                                <p className="review-author">- {review.name}</p>
-                                                {review.location && <p className="review-location">{review.location}</p>}
-                                            </div>
-                                        </div>
-                                    ))
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <div className="container">
+            <div className="shape-1"></div>
+            <div className="shape-2"></div>
+    
+            <div className="row mb-m-30">
+              <div className="title">
+                <p className="light-txt">Discover What Others Say</p>
+                <h2>
+                  Exploring<span className="primary-clr"> Customer Reviews</span>
+                </h2>
+              </div>
             </div>
+    
+            <div className="row">
+              <div className="col-md-12">
+                <div className="reviews-container">
+                  {state.loading ? (
+                    <Slider {...settings}>
+                      {/* Render skeletons while loading */}
+                      {Array.from({ length: 3 }).map((_, index) => (
+                        <div key={index} className="review-item">
+                          <ReviewSkeleton />
+                        </div>
+                      ))}
+                    </Slider>
+                  ) : (
+                    <Slider {...settings}>
+                      {/* Render actual reviews when data is loaded */}
+                      {reviews.map((review, index) => (
+                        <div key={index} className="review-item">
+                          <div className="review-content">
+                            <blockquote>
+                              <p className="review-text">{review.review}</p>
+                            </blockquote>
+                            {review.picture && (
+                              <img
+                                src={review.picture}
+                                alt={review.name}
+                                className="review-picture"
+                              />
+                            )}
+                            <p className="review-author">- {review.name}</p>
+                            {review.location && (
+                              <p className="review-location">{review.location}</p>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </Slider>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
-    );
-}
-
-export default Reviews;
+      );
+    }
+    
+    export default Reviews;

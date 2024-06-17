@@ -1,14 +1,14 @@
 export const headermanu = [
-
+    
     {
         href: "#home",
         title: "Home"
     },
-
     {
-        href: "#about",
-        title: "About"
+        href: "#brands",
+        title: "Brands"
     },
+
     {
         href: "#services",
         title: "Services"
@@ -26,10 +26,6 @@ export const headermanu = [
         title: "Portfolio"
     },
 
-    {
-        href: "#brands",
-        title: "Brands"
-    },
     
     {
         href: "#reviews",

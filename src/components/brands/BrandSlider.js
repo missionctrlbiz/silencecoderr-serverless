@@ -57,7 +57,7 @@ function BrandSlider() {
           <section
             id="brands"
             className="bx-service-section bx-section primary-clr"
-            style={{ marginTop: `80px`, marginBottom: `20px` }}
+            style={{ marginTop: `80px`, marginBottom: `120px` }}
           >
             <div className="container">
               <div className="row">
