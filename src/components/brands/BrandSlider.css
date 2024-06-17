@@ -1,4 +1,3 @@
-/* BrandSlider.css */
 .brand-slider {
     margin: 20px auto;
     max-width: 1200px;
@@ -7,51 +6,44 @@
     padding: 20px;
     border-radius: 5px;
     overflow: hidden;
-
-}
-
-.title {
+  }
+  
+  .title {
     margin-bottom: 20px;
-}
-
-.title h2 {
+  }
+  
+  .title h2 {
     font-size: 24px;
     margin: 10px 0;
-}
-
-.title .primary-clr {
+  }
+  
+  .title .primary-clr {
     color: #770b4c;
-}
-
-.brand-slide {
+  }
+  
+  .brand-slide {
     padding: 0 10px;
-}
-
-.brand-slide img {
+  }
+  
+  .brand-slide img {
     max-width: 100%;
     height: 100px;
     border-radius: 5px;
     object-fit: contain;
     object-position: center;
-    align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
-}
-
-@media screen and (max-width: 768px) {
+    margin: 0 auto;
+  }
+  
+  @media screen and (max-width: 768px) {
     .brand-slide {
-        padding: 0 5px;
+      padding: 0 5px;
     }
-}
-
-.slick-slide {
-    display: flex;
-    align-items: center; /* Center the images vertically */
-    justify-content: center; /* Center the images horizontally */
-}
-
-.slick-slide img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 5px;
-}
+  }
+  
+  /* Add a transition for smooth pausing */
+  .slick-list {
+    transition: transform 0.5s ease;
+  }
+  
