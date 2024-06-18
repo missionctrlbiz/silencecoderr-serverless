@@ -2,7 +2,7 @@
 
 <div align="center">
 
-  <img src="your-portfolio-logo.svg" alt="SilenceCoderr Logo" width="200">
+  <img src="https://github.com/SilenceCodder/SilenceCodder-Porfolio/blob/main/public/assets/img/logo/silencecodder-logo.png" alt="SilenceCoderr Logo" width="200">
 
 </div>
 

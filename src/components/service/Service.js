@@ -30,7 +30,7 @@ function Service() {
             <section
                 id="services"
                 className="bx-service-section bx-section body-bg"
-                style={{ marginTop: `80px`, marginBottom: `20px` }}
+                style={{ marginTop: `40px` }}
             >
                 <div className="container">
                     <div className="row">
