@@ -1,49 +1,49 @@
 .brand-slider {
-    margin: 20px auto;
-    max-width: 1200px;
-    text-align: center;
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 5px;
-    overflow: hidden;
-  }
-  
-  .title {
-    margin-bottom: 20px;
-  }
-  
-  .title h2 {
-    font-size: 24px;
-    margin: 10px 0;
-  }
-  
-  .title .primary-clr {
-    color: #770b4c;
-  }
-  
+  margin: 10px auto;
+  max-width: 1200px;
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.title h2 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.title .primary-clr {
+  color: #770b4c;
+}
+
+.brand-slide {
+  padding: 0 5px;
+}
+
+.brand-slide img {
+  max-width: 100%;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: contain;
+  object-position: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 768px) {
   .brand-slide {
-    padding: 0 10px;
+    padding: 0 0px;
+    margin-bottom: 50px;
   }
-  
-  .brand-slide img {
-    max-width: 100%;
-    height: 100px;
-    border-radius: 5px;
-    object-fit: contain;
-    object-position: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 0 auto;
-  }
-  
-  @media screen and (max-width: 768px) {
-    .brand-slide {
-      padding: 0 5px;
-    }
-  }
-  
-  /* Add a transition for smooth pausing */
-  .slick-list {
-    transition: transform 0.5s ease;
-  }
-  
+}
+
+/* Add a transition for smooth pausing */
+.slick-list {
+  transition: transform 0.5s ease;
+}

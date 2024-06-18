@@ -26,7 +26,7 @@ function Experience() {
 
   return (
     <div>
-      <section id="experience" className="bx-experience-section bx-section padding-tb-80">
+      <section id="experience" className="bx-experience-section bx-section padding-tb-40">
         <div className="container">
           <div className="shape-1"></div>
           <div className="shape-2"></div>

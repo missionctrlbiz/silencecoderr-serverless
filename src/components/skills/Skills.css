@@ -1,28 +1,19 @@
-.skills-container {
-  position: relative;
-  overflow: hidden;
+.skills-row-container {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  cursor: grab;
 }
 
 .skills-row {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-around;
-  width: 200%; /* Double the width for continuous scroll */
-  animation: scroll 20s linear infinite;
-}
-
-.skills-row-left {
-  animation-direction: normal;
-}
-
-.skills-row-right {
-  animation-direction: reverse;
 }
 
 .skill-item {
-  flex: 0 0 10%; /* Ensure each item takes up an equal portion of the row */
+  display: inline-block;
   text-align: center;
-  margin: 10px;
+  margin: 50px; /* Add some margin around skill items */
 }
 
 .skill-item img {
@@ -30,32 +21,19 @@
   margin-bottom: 10px;
 }
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.bx-skills-section {
-  position: relative;
-  background-color: #fff; /* White background */
-}
-
-.title {
+/* Title Styles */
+.bx-skills-section .title {
   margin-bottom: 50px;
   text-align: center;
 }
 
-.title h2 {
+.bx-skills-section .title h2 {
   font-size: 2.2em;
   margin: 10px 0;
   font-weight: 700;
 }
 
-.light-txt {
+.bx-skills-section .light-txt {
   margin-bottom: 5px;
   font-size: 16px;
   color: #777;
@@ -63,7 +41,58 @@
   font-weight: 600;
 }
 
-.primary-clr {
+.bx-skills-section .title h2 .primary-clr {
   color: #7963e0;
   font-weight: bold;
 }
+
+
+
+
+
+
+/* 
+
+
+.skills-row {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+width: 100%;
+margin-bottom: 20px;
+}
+
+.skill-item {
+text-align: center;
+margin: 10px; 
+}
+
+.skill-item img {
+height: 100px;
+margin-bottom: 10px;
+}
+
+.bx-skills-section .title { / More specific selector targeting the Skills section /
+margin-bottom: 50px;
+text-align: center; / Center the title 
+}
+
+.bx-skills-section .title h2 {
+font-size: 2.2em;
+margin: 10px 0;
+font-weight: 700;
+
+}
+.bx-skills-section .light-txt {
+margin-bottom: 5px;
+font-size: 16px;
+color: #777;
+text-transform: uppercase;
+font-weight: 600;
+}
+
+.bx-skills-section .title h2 .primary-clr {
+color: #7963e0;
+font-weight: bold;
+
+} */
