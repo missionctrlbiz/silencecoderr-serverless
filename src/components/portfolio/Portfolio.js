@@ -76,9 +76,9 @@ const Portfolio = () => {
     <section
       name="portfolio"
       id="portfolio"
-      className="bx-contact-section bx-section padding-tb-80 body-bg"
+      className="bx-contact-section bx-section body-bg"
     >
-      <div className="portfolio-section" style={{ marginTop: `50px` }}>
+      <div className="portfolio-section">
         <Fade triggerOnce duration={2000} direction="up" delay={300}>
           <div className="title">
             <p className="light-txt">My Portfolio</p>

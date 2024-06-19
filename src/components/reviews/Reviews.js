@@ -40,7 +40,7 @@ function Reviews() {
     );
 
     return (
-        <section id="reviews" className="bx-service-section bx-section padding-tb-80">
+        <section id="reviews" className="bx-service-section bx-section">
           <div className="container">
             <div className="shape-1"></div>
             <div className="shape-2"></div>

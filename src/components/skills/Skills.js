@@ -34,7 +34,7 @@ function Skills() {
   });
 
   return (
-    <section id="skills" className="bx-skills-section bx-section padding-tb-50 body-bg" >
+    <section id="skills" className="bx-skills-section bx-section body-bg" >
       <div className="container">
         <div className="row">
           <div className="title">

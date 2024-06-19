@@ -56,7 +56,7 @@ function BrandSlider() {
   );
 
   return (
-    <section id="brands" className="bx-service-section padding-b-80 bx-section primary-clr">
+    <section id="brands" className="bx-service-section padding-b-10 bx-section primary-clr">
       <div className="container">
         <div className="row">
           <Fade triggerOnce duration={2000} direction="up" delay={300}>
