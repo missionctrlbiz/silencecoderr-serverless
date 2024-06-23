@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Fade } from 'react-awesome-reveal';
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 function Contact() {
     const themeMode = useSelector((state) => state.image.themeMode);
@@ -25,28 +27,46 @@ function Contact() {
         });
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const errors = validateForm(formData);
+        const errors = validateForm();
+        console.log('Form data being sent:', formData);
+
         if (Object.keys(errors).length === 0) {
+            try {
+                const response = await axios.post('/api/send-email', formData);
+                console.log('API Response:', response);
 
-            alert('Form submitted:', formData);
+                Swal.fire({
+                    title: 'Thanks for contacting SilenceCodder!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
 
-            setFormData({
-                fullName: '',
-                email: '',
-                phone: '',
-                subject: '',
-                message: ''
-            });
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    phone: '',
+                    subject: '',
+                    message: ''
+                });
+            } catch (error) {
+                console.error('Error sending email:', error);
+
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to send the message. Please try again later.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
         } else {
-
             setFormErrors(errors);
-
         }
     }
+
     const validateForm = () => {
-        let errors = { formErrors };
+        let errors = {};
         if (!formData.fullName.trim()) {
             errors.fullName = 'Full Name is required';
         }
@@ -64,25 +84,22 @@ function Contact() {
     }
 
     const isValidPhone = (phone) => {
-        // Basic phone number validation regex
         const phonePattern = /^[0-9]{10}$/;
         return phonePattern.test(phone);
     }
 
-
     const isValidEmail = (email) => {
-        // Basic email validation regex
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailPattern.test(email);
     }
 
     return (
         <div>
-            <section id="contact" className="bx-contact-section bx-section padding-b-80 padding-t-40 body-bg">
+            <section id="contact" className="bx-contact-section bx-section padding-b-80 body-bg" style={{paddingTop: '40px'}}>
                 <div className="container">
                     <Fade triggerOnce duration={2000} direction='up' delay={300} className="title" >
                         <p className="light-txt">form</p>
-                        <h2>Get In<span className="primary-clr" style={{textTransform: 'unset'}}> Touch</span></h2>
+                        <h2>Get In<span className="primary-clr" style={{ textTransform: 'unset' }}> Touch</span></h2>
                     </Fade>
                     <form className={` ${themeMode === "light" ? "form-light" : ""}`} onSubmit={handleSubmit}>
                         <div className="row">
@@ -116,4 +133,4 @@ function Contact() {
     )
 }
 
-export default Contact
+export default Contact;

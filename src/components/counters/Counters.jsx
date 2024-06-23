@@ -45,7 +45,7 @@ function Counters() {
 
 
     return (
-        <section className="counters-section" style={{ marginTop: '90px', marginBottom: '0px'}}>
+        <section className="counters-section">
             <div className="container">
                 <div className="row">
                     {/* Experience Counter */}
