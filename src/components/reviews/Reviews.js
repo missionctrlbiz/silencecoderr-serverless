@@ -14,7 +14,7 @@ function Reviews() {
     const settings = {
         dots: false,
         infinite: true,
-        speed: 500,
+        speed: 3000,
         slidesToShow: 1, // Show one review at a time
         slidesToScroll: 1,
         arrows: false, // Hide the default arrows
