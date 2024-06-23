@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
-import FsLightbox from 'fslightbox-react'; // Using fslightbox-react
+import FsLightbox from 'fslightbox-react'; 
 import { Fade } from 'react-awesome-reveal';
 import './Portfolio.css';
 import { useAppContext } from '../../context/useAppContext';
@@ -76,7 +76,7 @@ const Portfolio = () => {
     <section
       name="portfolio"
       id="portfolio"
-      className="bx-contact-section bx-section body-bg"
+      className="bx-contact-section bx-section body-bg padding-tb-80"
     >
       <div className="portfolio-section">
         <Fade triggerOnce duration={2000} direction="up" delay={300}>
@@ -111,22 +111,25 @@ const Portfolio = () => {
                       key={index}
                       className="portfolio-item col-md-10 offset-md-1"
                     >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="portfolio-image"
-                        title="https://silencecoderr-serverless.vercel.app/"
-                        onClick={() => openLightboxOnSlide(index + 1)} // Start from slide 1
-                      />
                       <a
-                        href="https://silencecoderr-serverless.vercel.app/"
+                        href={item?.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openLightboxOnSlide(index + 1);
+                        }}
                       >
-                        <p className="portfolio-name">{item.name}</p>
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="portfolio-image"
+                          title="https://silencecoderr-serverless.vercel.app/"
+                        />
                       </a>
+                      <p className="portfolio-name">{item?.name}</p>
                       <a
-                        href="https://silencecoderr-serverless.vercel.app/"
+                        href={item?.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="visit-link"

@@ -95,7 +95,7 @@ function Contact() {
 
     return (
         <div>
-            <section id="contact" className="bx-contact-section bx-section padding-b-80 padding-t-40 body-bg">
+            <section id="contact" className="bx-contact-section bx-section padding-b-80 body-bg" style={{paddingTop: '40px'}}>
                 <div className="container">
                     <Fade triggerOnce duration={2000} direction='up' delay={300} className="title" >
                         <p className="light-txt">form</p>

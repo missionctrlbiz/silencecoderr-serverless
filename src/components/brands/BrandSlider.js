@@ -7,7 +7,7 @@ import ContentLoader from 'react-content-loader';
 
 function BrandSlider() {
   const { state } = useAppContext();
-  const brands = state.brands;
+  const brands = state?.brands;
 
   const settings = {
     dots: false,
@@ -71,7 +71,7 @@ function BrandSlider() {
             </div>
           </Fade>
 
-          {state.loading ? (
+          {state?.loading ? (
             <Slider {...settings}>
               {Array.from({ length: 4 }).map((_, index) => (
                 <div key={index} className="brand-slide">
@@ -81,14 +81,14 @@ function BrandSlider() {
             </Slider>
           ) : (
             <Slider {...settings}>
-              {brands.map((brand, index) => (
+              {brands?.map((brand, index) => (
                 <div key={index} className="brand-slide">
                   <a
-                    href={brand.redirect}
+                    href={brand?.redirect}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src={brand.pic} alt={`brand-${index}`} />
+                    <img src={brand?.pic} alt={`brand-${index}`} />
                   </a>
                 </div>
               ))}
@@ -101,6 +101,7 @@ function BrandSlider() {
 }
 
 export default BrandSlider;
+
 
 
 // import React from 'react';

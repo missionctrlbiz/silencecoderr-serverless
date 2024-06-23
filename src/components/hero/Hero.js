@@ -1,4 +1,5 @@
-import React, { useRef, useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useRef, useState } from 'react';
 import { Fade } from "react-awesome-reveal";
 import BgSlider from '../backgroundslider/BgSlider';
 import { useAppContext } from '../../context/useAppContext'
@@ -10,17 +11,51 @@ function Hero() {
   const shape3Ref = useRef(null);
   const shape4Ref = useRef(null);
   const shape5Ref = useRef(null);
-  const [isOpen] = useState(false);
-
-
+  const [isOpen, setIsOpen] = useState(false);
   const { state } = useAppContext();
   const aboutData = state.aboutData;
 
-  // const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     setIsOpen(!isOpen);
-  // }
-  // Skeleton Loader for Hero content
+  useEffect(() => {
+    const parallaxMouse = (event) => {
+      const elements = [
+        { el: shape1Ref.current, rate: 0.2, invert: true, range: 400 },
+        { el: shape2Ref.current, rate: 0.2, invert: true, range: 400 },
+        { el: shape3Ref.current, rate: 0.12, invert: true, range: 400 },
+        { el: shape4Ref.current, rate: 0.2, invert: false, range: 400 },
+        { el: shape5Ref.current, rate: 0.2, invert: false, range: 400 }
+      ];
+
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+
+      elements.forEach(({ el, rate, invert, range }) => {
+        const rect = el.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        let xPos = (mouseX - centerX) * rate;
+        let yPos = (mouseY - centerY) * rate;
+
+        if (invert) {
+          xPos = Math.min(Math.max(xPos, -range), range);
+          yPos = Math.min(Math.max(yPos, -range), range);
+        }
+
+        el.style.transform = `translate3d(${xPos}px, ${yPos}px, 10px)`;
+      });
+    };
+
+    window.addEventListener('mousemove', parallaxMouse);
+
+    return () => {
+      window.removeEventListener('mousemove', parallaxMouse);
+    };
+  }, [shape1Ref, shape2Ref, shape3Ref, shape4Ref, shape5Ref]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsOpen(!isOpen);
+  };
+
   const HeroSkeleton = () => (
     <ContentLoader
       speed={2}
@@ -34,15 +69,14 @@ function Hero() {
       <rect x="0" y="30" rx="3" ry="3" width="300" height="20" />
       <rect x="0" y="60" rx="3" ry="3" width="200" height="10" />
       <rect x="0" y="80" rx="3" ry="3" width="150" height="10" />
-      {/* Add more shapes to match the structure of your Hero content */}
     </ContentLoader>
   );
-  // Skeleton Loader for Profile Image
+
   const ProfileImageSkeleton = () => (
     <ContentLoader
       speed={2}
-      width={500} // Adjust width as needed
-      height={500} // Adjust height as needed
+      width={500}
+      height={500}
       viewBox="0 0 150 150"
       backgroundColor="#c0c0c0"
       foregroundColor="#ecebeb"
@@ -50,6 +84,7 @@ function Hero() {
       <rect x="0" y="0" width="150" height="150" />
     </ContentLoader>
   );
+
   return (
     <div>
       <section id="home" className="bx-home home-section bx-section padding-tb-80 bg-shape-hero">
@@ -58,13 +93,9 @@ function Hero() {
         </div>
 
         <img ref={shape1Ref} id="shape1" className="parallax" src="assets/img/bg/shape-1.png" alt="shape" />
-
         <img ref={shape2Ref} id="shape2" className="parallax" src="assets/img/bg/shape-2.png" alt="shape" />
-
         <img ref={shape3Ref} id="shape3" className="parallax" src="assets/img/bg/shape-3.png" alt="shape" />
-
         <img ref={shape4Ref} id="shape4" className="parallax" src="assets/img/bg/shape-4.png" alt="shape" />
-
         <img ref={shape5Ref} id="shape5" className="parallax" src="assets/img/bg/shape-5.png" alt="shape" />
 
         <div className="container p-0">
@@ -77,9 +108,9 @@ function Hero() {
                   ) : (
                     <>
                       <span className="primary-color">Hello, My name is</span>
-                      <h1>{aboutData?.name}</h1> {/* Use optional chaining here */}
-                      <h2>{aboutData?.sub}</h2> {/* Use optional chaining here */}
-                      <p>{aboutData?.short_info}</p> {/* Use optional chaining here */}
+                      <h1>{aboutData?.name}</h1>
+                      <h2>{aboutData?.sub}</h2>
+                      <p>{aboutData?.short_info}</p>
 
                       <div className="buttons">
                         {aboutData?.contact?.email && (
