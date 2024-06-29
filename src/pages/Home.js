@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { setLight } from '../store/counter/ImageSlice';
 import Skills from '../components/skills/Skills';
 import Counters from '../components/counters/Counters';
+// import News from '../components/news/News';
 
 function Home() {
 
@@ -35,6 +36,7 @@ function Home() {
       <Portfolio />
       <Reviews />
       <Contact />
+      {/* <News/> */}
       <Footer />
     </div>
   )

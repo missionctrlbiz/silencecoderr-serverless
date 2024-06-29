@@ -59,7 +59,7 @@ function Service() {
                                             <h6>{index + 1}</h6>
                                         </div>
                                         <div className="card-description">
-                                            <img src={service.image} alt={service.name} style={{ width: '40%', height: '40%' }} />
+                                            <img src={service.image} alt={service.name} style={{ width: '50%'}} />
                                             <div className="detailed-txt">
                                                 <h5>{service.name}</h5>
                                                 <p>{service.short_desc}</p>
